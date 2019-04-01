@@ -1,20 +1,23 @@
-"use strict";
-export const __esModule = true;
 import { Point } from "./point";
-var Circle = /** @class */ (function() {
-  function Circle(x, y, radios, canvas) {
+
+export class Circle {
+
+  constructor(x, y, radios, canvas) {
     this.center = new Point(x, y);
     this.radius = radios;
     this.ctx = canvas;
   }
-  Circle.prototype.DrawPixel = function(x, y) {
+
+  DrawPixel(x, y) {
     this.ctx.fillRect(x, y, 1, 1);
-  };
-  Circle.prototype.draw = function() {
+  }
+
+  draw() {
     console.log("printing circle");
-    var x = this.radius;
-    var y = 0;
-    var radiusError = 1 - x;
+    let x = this.radius;
+    let y = 0;
+    let radiusError = 1 - x;
+
     while (x >= y) {
       this.DrawPixel(x + this.center.x, y + this.center.y);
       this.DrawPixel(y + this.center.x, x + this.center.y);
@@ -25,6 +28,7 @@ var Circle = /** @class */ (function() {
       this.DrawPixel(x + this.center.x, -y + this.center.y);
       this.DrawPixel(y + this.center.x, -x + this.center.y);
       y++;
+
       if (radiusError < 0) {
         radiusError += 2 * y + 1;
       } else {
@@ -32,8 +36,5 @@ var Circle = /** @class */ (function() {
         radiusError += 2 * (y - x + 1);
       }
     }
-  };
-  return Circle;
-})();
-const _Circle = Circle;
-export { _Circle as Circle };
+  }
+}
