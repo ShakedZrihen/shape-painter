@@ -11,6 +11,7 @@ export default class Circle extends BaseShape {
   }
 
   draw() {
+    console.log("printing circle")
     let x = this.radius;
     let y = 0;
     let radiusError = 1 - x;
