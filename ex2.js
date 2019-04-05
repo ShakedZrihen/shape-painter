@@ -17,13 +17,15 @@ lineBtn.addEventListener("click", event => {
   mycanvas.setContext(new Line(mycanvas));
 });
 
+const bezierBtn = document.getElementById("bezierBtn");
+bezierBtn.addEventListener("click", event => {
+  clearSelected();
+  bezierBtn.style.backgroundColor = "#282828";
+  mycanvas.setContext(new BezierCurve(mycanvas));
+});
+
 function clearSelected() {
   lineBtn.style.backgroundColor = "";
+  bezierBtn.style.backgroundColor = "";
   circleBtn.style.backgroundColor = "";
 }
-
-// canvasElement.addEventListener("mousedown", event => {
-//   const circle = new Circle(mycanvas);
-//   mycanvas.setContext(circle);
-//   mycanvas.context.draw();
-// });

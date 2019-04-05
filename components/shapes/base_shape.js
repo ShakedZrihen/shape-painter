@@ -36,17 +36,16 @@ class BaseShape {
     this.canvas.canvas.addEventListener("mouseup", event =>
       this.handleMouseUp(event)
     );
+    this.canvas.canvas.addEventListener("click", event =>
+      this.handleMouseClick(event)
+    );
   }
 
-  handleMouseDown(event) {
-    throw new Error("You should implement mouse events function");
-  }
+  handleMouseDown(event) {}
 
-  hansleMouseMove(event) {
-    throw new Error("You should implement mouse events function");
-  }
+  hansleMouseMove(event) {}
 
-  handleMouseUp(event) {
-    throw new Error("You should implement mouse events function");
-  }
+  handleMouseUp(event) {}
+
+  handleMouseClick(event) {}
 }

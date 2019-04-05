@@ -12,6 +12,8 @@ class Line extends BaseShape {
       this.startPoint = this.canvas.getMousePosition(event);
       this.isDown = true;
       console.log(this.startPoint);
+    } else {
+      this.handleMouseUp(event);
     }
   }
 
