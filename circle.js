@@ -1,7 +1,6 @@
-import { Point } from "./point";
+import Point from "./point.js";
 
 export class Circle {
-
   constructor(x, y, radios, canvas) {
     this.center = new Point(x, y);
     this.radius = radios;

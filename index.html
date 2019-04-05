@@ -2,9 +2,36 @@
 <html>
   <head>
     <title>Graphic Ex 1</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <script src="./ex2.js" ></script>
+    <main id="workplace">
+      <header></header>
+      <nav id="toolbar">
+        <button id="circleBtn">
+          <i class="fas fa-circle"></i>
+        </button>
+        <button id="lineBtn">
+          <i class="fas fa-slash"></i>
+        </button>
+        <button id="bezierBtn">
+          <i class="fas fa-project-diagram"></i>
+        </button>
+      </nav>
+      <canvas width="400" height="400" id="canvas"></canvas>
+    </main>
+
+    <script src="./components/shapes/point.js"></script>
+    <script src="./components/shapes/base_shape.js"></script>
+    <script src="./components/shapes/circle.js"></script>
+    <script src="./components/canvas.js"></script>
+    <script src="./ex2.js"></script>
   </body>
 </html>
