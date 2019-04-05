@@ -4,14 +4,23 @@
   width: 96%;
 }
 
+#canvas-container {
+  height: 600px;
+  width: 96%;
+  background-color: #282828;
+}
+
 #canvas {
+  margin-left: 8%;
+  margin-top: 4%;
+  background-color: white;
   float: left;
 }
 
 #toolbar {
   background-color: #696969;
   width: 34px;
-  height: 400px;
+  height: 600px;
   float: left;
 }
 
@@ -34,6 +43,7 @@
 }
 
 button {
+  border: none;
   width: 34px;
   height: 34px;
   color: #c9c9c9;

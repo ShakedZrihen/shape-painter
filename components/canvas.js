@@ -5,6 +5,7 @@ class Canvas {
     this.ctx = null;
     this.isMouseDown = false;
     this.context = null;
+    this.storedSapes = [];
   }
 
   init() {
@@ -14,6 +15,7 @@ class Canvas {
 
   setContext(shape) {
     this.context = shape;
+    this.context.init();
   }
 
   getMousePosition(event) {
@@ -29,9 +31,23 @@ class Canvas {
       this.canvas.height;
     return new Point(x, y);
   }
-}
 
-this.canvas.addEventListener("mousedown", event => {
-  console.log("here");
-  this.context.draw();
-});
+  redrawStoredShapes() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if (this.storedSapes.length === 0) {
+      return;
+    }
+    this.storedSapes.forEach(shape => {
+      shape.draw();
+    });
+  }
+
+  clearListeners() {
+    let el, elClone;
+    (el = document.getElementById("canvas")), (elClone = el.cloneNode(true));
+    el.parentNode.replaceChild(elClone, el);
+    this.canvas = document.getElementById("canvas");
+    this.init();
+    this.redrawStoredShapes();
+  }
+}

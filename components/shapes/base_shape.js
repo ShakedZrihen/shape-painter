@@ -21,7 +21,32 @@ class BaseShape {
     }
   }
 
-  draw() {
+  draw(event) {
     throw new Error("You should implement draw function");
+  }
+
+  init() {
+    this.canvas.clearListeners();
+    this.canvas.canvas.addEventListener("mousedown", event =>
+      this.handleMouseDown(event)
+    );
+    this.canvas.canvas.addEventListener("mousemove", event =>
+      this.hansleMouseMove(event)
+    );
+    this.canvas.canvas.addEventListener("mouseup", event =>
+      this.handleMouseUp(event)
+    );
+  }
+
+  handleMouseDown(event) {
+    throw new Error("You should implement mouse events function");
+  }
+
+  hansleMouseMove(event) {
+    throw new Error("You should implement mouse events function");
+  }
+
+  handleMouseUp(event) {
+    throw new Error("You should implement mouse events function");
   }
 }
