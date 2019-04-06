@@ -1,4 +1,4 @@
-class LineBtn extends ButtonBase {
+class LineBtn extends ShapeButtonBase {
   constructor(name, paint) {
     super(name, paint);
   }
