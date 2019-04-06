@@ -17,7 +17,6 @@ class Canvas {
   undo() {
     if (this.storedSapes.length > 0) {
       this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      console.log(this.storedSapes);
       this.redoItems.push(this.storedSapes.pop());
       this.redrawStoredShapes();
     }
