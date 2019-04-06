@@ -39,7 +39,14 @@ class Circle extends BaseShape {
     this.canvas.redrawStoredShapes();
   }
 
-  drawCircle() {
+  draw(event) {
+    if (event) {
+      const point = this.canvas.getMousePosition(event);
+      this.radius =
+        this.center.x - point.x < 0
+          ? -1 * (this.center.x - point.x)
+          : this.center.x - point.x;
+    }
     let x = this.radius;
     let y = 0;
     let radiusError = 1 - x;
@@ -61,19 +68,6 @@ class Circle extends BaseShape {
         x--;
         radiusError += 2 * (y - x + 1);
       }
-    }
-  }
-
-  draw(event) {
-    if (!event) {
-      this.drawCircle();
-    } else {
-      const point = this.canvas.getMousePosition(event);
-      this.radius =
-        this.center.x - point.x < 0
-          ? -1 * (this.center.x - point.x)
-          : this.center.x - point.x;
-      this.drawCircle();
     }
   }
 }

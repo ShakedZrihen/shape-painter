@@ -39,7 +39,10 @@ class Line extends BaseShape {
     this.canvas.redrawStoredShapes();
   }
 
-  drawLine() {
+  draw(event) {
+    if (event) {
+      this.endPoint = this.canvas.getMousePosition(event);
+    }
     const dx = (this.endPoint.x - this.startPoint.x) * 1.0;
     const dy = (this.endPoint.y - this.startPoint.y) * 1.0;
     let steps = 0.0;
@@ -54,15 +57,6 @@ class Line extends BaseShape {
       x = x + Xincrement;
       y = y + Yincrement;
       this.drawPixel(x, y);
-    }
-  }
-
-  draw(event) {
-    if (!event) {
-      this.drawLine();
-    } else {
-      this.endPoint = this.canvas.getMousePosition(event);
-      this.drawLine();
     }
   }
 }
