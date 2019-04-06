@@ -6,11 +6,29 @@ class Canvas {
     this.isMouseDown = false;
     this.context = null;
     this.storedSapes = [];
+    this.redoItems = [];
   }
 
   init() {
     this.ctx = canvas.getContext("2d"); // Set canves to 2d canvac
     this.isInitialize = true;
+  }
+
+  undo() {
+    if (this.storedSapes.length > 0) {
+      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+      console.log(this.storedSapes);
+      this.redoItems.push(this.storedSapes.pop());
+      this.redrawStoredShapes();
+    }
+  }
+
+  redo() {
+    if (this.redoItems.length > 0) {
+      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+      this.storedSapes.push(this.redoItems.pop());
+      this.redrawStoredShapes();
+    }
   }
 
   setContext(shape) {

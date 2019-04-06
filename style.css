@@ -24,18 +24,15 @@
   float: left;
 }
 
-.fa-circle {
+.fa-circle,
+.fa-undo,
+.fa-redo {
   font-size: 20px;
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: black;
 }
 
-.fa-slash {
-  font-size: 16px;
-  -webkit-text-stroke: 0.5px;
-  -webkit-text-stroke-color: black;
-}
-
+.fa-slash,
 .fa-project-diagram {
   font-size: 16px;
   -webkit-text-stroke: 0.5px;

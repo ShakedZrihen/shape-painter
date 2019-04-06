@@ -24,6 +24,16 @@ bezierBtn.addEventListener("click", event => {
   mycanvas.setContext(new BezierCurve(mycanvas));
 });
 
+const undoBtn = document.getElementById("undoBtn");
+undoBtn.addEventListener("click", event => {
+  mycanvas.undo();
+});
+
+const redoBtn = document.getElementById("redoBtn");
+redoBtn.addEventListener("click", event => {
+  mycanvas.redo();
+});
+
 function clearSelected() {
   lineBtn.style.backgroundColor = "";
   bezierBtn.style.backgroundColor = "";
