@@ -20,27 +20,24 @@ class Circle extends BaseShape {
     }
   }
 
-  hansleMouseMove(event) {
-    if (!this.isDown) {
-      return;
+  handleMouseMove(event) {
+    if (this.isDown) {
+      this.canvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
+      this.canvas.redrawStoredShapes();
+      this.draw(event);
     }
-    this.canvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    this.canvas.redrawStoredShapes();
-    this.draw(event);
   }
 
   handleMouseUp(event) {
-    if (!this.radius) {
-      return;
+    if (this.radius) {
+      this.canvas.storedSapes.push(
+        new Circle(this.canvas, this.center.x, this.center.y, this.radius)
+      );
+      this.isDown = false;
+      this.center = null;
+      this.radius = null;
+      this.canvas.redrawStoredShapes();
     }
-    this.canvas.storedSapes.push(
-      new Circle(this.canvas, this.center.x, this.center.y, this.radius)
-    );
-    this.isDown = false;
-    this.center = null;
-    this.radius = null;
-    this.canvas.redrawStoredShapes();
   }
 
   plotCirclePoint(x, y) {

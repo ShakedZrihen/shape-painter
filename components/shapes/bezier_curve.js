@@ -46,7 +46,6 @@ class BezierCurve extends BaseShape {
   }
 
   draw(event) {
-    console.log("numberOfPoint", this.numberOfLines);
     let accuracy = 1.0 / this.numberOfLines; //this'll give the bezier of numberOfLines lines segments
     let startPoint = this.controlPoints[0];
     for (let i = 0; i < 1; i += accuracy) {

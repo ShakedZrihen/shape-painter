@@ -35,7 +35,7 @@ class BaseShape {
       this.handleMouseDown(event)
     );
     this.canvas.canvas.addEventListener("mousemove", event =>
-      this.hansleMouseMove(event)
+      this.handleMouseMove(event)
     );
     this.canvas.canvas.addEventListener("mouseup", event =>
       this.handleMouseUp(event)
@@ -47,7 +47,7 @@ class BaseShape {
 
   handleMouseDown(event) {}
 
-  hansleMouseMove(event) {}
+  handleMouseMove(event) {}
 
   handleMouseUp(event) {}
 

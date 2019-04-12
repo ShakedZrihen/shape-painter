@@ -17,9 +17,4 @@ class Toolbar {
       button.clearSelect();
     });
   }
-
-  select(button) {
-    this.clearSelected();
-    button.style.backgroundColor = "#282828";
-  }
 }

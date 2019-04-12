@@ -25,7 +25,7 @@ class BezierBtn extends ShapeButtonBase {
     if (numberOfLines) {
       return numberOfLines;
     }
-    return 100;
+    return 100; // Return default number of lines
   }
 
   select() {
