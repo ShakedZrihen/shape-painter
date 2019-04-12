@@ -2,7 +2,7 @@
 
 #  Shape painter
 
-Shape painter for drawing circles, lines and curves
+Web application for drawing circles, lines and curves
 
 #### How to download  
 
