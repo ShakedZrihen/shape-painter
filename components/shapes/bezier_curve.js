@@ -15,7 +15,6 @@ class BezierCurve extends BaseShape {
       this.canvas.redrawStoredShapes();
     } else {
       this.canvas.redrawStoredShapes();
-
       this.controlPoints.push(this.canvas.getMousePosition(event));
       this.draw(event);
     }
@@ -48,7 +47,7 @@ class BezierCurve extends BaseShape {
 
   draw(event) {
     console.log("numberOfPoint", this.numberOfLines);
-    let accuracy = 1.0 / this.numberOfLines; //this'll give the bezier 100 segments
+    let accuracy = 1.0 / this.numberOfLines; //this'll give the bezier of numberOfLines lines segments
     let startPoint = this.controlPoints[0];
     for (let i = 0; i < 1; i += accuracy) {
       let p = this.BezierPoint(this.controlPoints, i);
