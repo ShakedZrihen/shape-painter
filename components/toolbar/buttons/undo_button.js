@@ -10,4 +10,8 @@ class UndoBtn extends ButtonBase {
   handleButtonPress(event) {
     this.paint.canvas.undo();
   }
+
+  clearSelect() {}
+
+  select() {}
 }

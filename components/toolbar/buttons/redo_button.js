@@ -10,4 +10,8 @@ class RedoBtn extends ButtonBase {
   handleButtonPress(event) {
     this.paint.canvas.redo();
   }
+
+  clearSelect() {}
+
+  select() {}
 }

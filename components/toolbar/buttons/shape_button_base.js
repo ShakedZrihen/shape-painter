@@ -10,8 +10,17 @@ class ShapeButtonBase extends ButtonBase {
   init() {
     this.btn = document.getElementById(this.name);
     this.btn.addEventListener("click", event => {
-      this.paint.toolbar.select(this.btn);
+      this.paint.toolbar.clearSelected();
+      this.select();
       this.handleButtonPress(event);
     });
+  }
+
+  clearSelect() {
+    this.btn.style.backgroundColor = "";
+  }
+
+  select() {
+    this.btn.style.backgroundColor = "#282828";
   }
 }

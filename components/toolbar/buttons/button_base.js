@@ -23,4 +23,12 @@ class ButtonBase {
   handleButtonHover(event) {
     throw new Error("Not Implement");
   }
+
+  clearSelect() {
+    throw new Error("Not Implement");
+  }
+
+  select() {
+    throw new Error("Not Implement");
+  }
 }

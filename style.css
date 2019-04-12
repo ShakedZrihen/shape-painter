@@ -53,3 +53,20 @@ header {
   width: 100%;
   height: 30px;
 }
+
+#number-of-lines {
+  width: 19px;
+  height: 19px;
+  margin-left: 4px;
+}
+
+#set-number-of-lines {
+  display: none;
+  margin-top: 100px;
+  float: left;
+}
+
+#set-number-of-lines-btn {
+  color: white;
+  text-align: center;
+}

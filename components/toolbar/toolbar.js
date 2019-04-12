@@ -14,7 +14,7 @@ class Toolbar {
 
   clearSelected() {
     this.buttons.forEach(button => {
-      button.btn.style.backgroundColor = "";
+      button.clearSelect();
     });
   }
 
