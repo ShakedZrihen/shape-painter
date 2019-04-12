@@ -30,6 +30,10 @@ click on two points on canvas for setting line edges.
 click on four points on canvas. <br/>
 the first and the last points are the endpoints and the middle points are the control points.
 
+You can change the number of lines that drawn the curve in this window: 
+<br/>
+![image](https://user-images.githubusercontent.com/30412727/56054803-743e6300-5d60-11e9-8a8c-7010285b2c46.png)
+
 ##### Redo and Undo
 ![image](https://user-images.githubusercontent.com/30412727/56027914-aa0f2780-5d1f-11e9-9baf-60df59a72305.png)
 <br/>
