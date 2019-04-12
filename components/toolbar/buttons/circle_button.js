@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class CircleBtn extends ShapeButtonBase {
   constructor(name, paint) {
     super(name, paint);

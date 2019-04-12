@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class Line extends BaseShape {
   constructor(canvas, startPoint = null, endPoint = null) {
     super(canvas);

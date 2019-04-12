@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class Paint {
   constructor(toolbar = null) {
     this.canvas = null;

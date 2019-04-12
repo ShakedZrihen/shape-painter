@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class Circle extends BaseShape {
   constructor(canvas, x = null, y = null, radius = null) {
     super(canvas);

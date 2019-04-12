@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class ShapeButtonBase extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);

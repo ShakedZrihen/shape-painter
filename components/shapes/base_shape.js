@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class BaseShape {
   constructor(canvas) {
     this.canvas = canvas;

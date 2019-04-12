@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 const paint = new Paint(new Toolbar());
 paint.init();
 

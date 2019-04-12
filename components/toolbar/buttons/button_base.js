@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class ButtonBase {
   constructor(name, paint) {
     this.name = name;
