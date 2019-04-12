@@ -34,7 +34,7 @@ class BezierCurve extends BaseShape {
     return this.factorial(n) / (this.factorial(p) * this.factorial(n - p));
   }
 
-  // general bezier calculation according to slides
+  // generic bezier calculation according to slides
   BezierPoint(controlPoints, t) {
     let bezierPoint = new Point(0, 0);
     const n = controlPoints.length - 1;
