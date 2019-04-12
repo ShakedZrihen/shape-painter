@@ -43,6 +43,17 @@ class Circle extends BaseShape {
     this.canvas.redrawStoredShapes();
   }
 
+  plotCirclePoint(x, y) {
+    this.drawPixel(x + this.center.x, y + this.center.y);
+    this.drawPixel(y + this.center.x, x + this.center.y);
+    this.drawPixel(-x + this.center.x, y + this.center.y);
+    this.drawPixel(-y + this.center.x, x + this.center.y);
+    this.drawPixel(-x + this.center.x, -y + this.center.y);
+    this.drawPixel(-y + this.center.x, -x + this.center.y);
+    this.drawPixel(x + this.center.x, -y + this.center.y);
+    this.drawPixel(y + this.center.x, -x + this.center.y);
+  }
+
   draw(event) {
     if (event) {
       const point = this.canvas.getMousePosition(event);
@@ -51,27 +62,22 @@ class Circle extends BaseShape {
           ? -1 * (this.center.x - point.x)
           : this.center.x - point.x;
     }
-    let x = this.radius;
-    let y = 0;
-    let radiusError = 1 - x;
+    let x = 0;
+    let y = this.radius;
+    let radiusError = 3 - 2 * this.radius; // p
 
-    while (x >= y) {
-      this.drawPixel(x + this.center.x, y + this.center.y);
-      this.drawPixel(y + this.center.x, x + this.center.y);
-      this.drawPixel(-x + this.center.x, y + this.center.y);
-      this.drawPixel(-y + this.center.x, x + this.center.y);
-      this.drawPixel(-x + this.center.x, -y + this.center.y);
-      this.drawPixel(-y + this.center.x, -x + this.center.y);
-      this.drawPixel(x + this.center.x, -y + this.center.y);
-      this.drawPixel(y + this.center.x, -x + this.center.y);
-      y++;
-
+    while (x < y) {
+      this.plotCirclePoint(x, y);
       if (radiusError < 0) {
-        radiusError += 2 * y + 1;
+        radiusError += 4 * x + 6;
       } else {
-        x--;
-        radiusError += 2 * (y - x + 1);
+        radiusError += 4 * (x - y) + 10;
+        y--;
       }
+      x++;
+    }
+    if (x == y) {
+      this.plotCirclePoint(x, y);
     }
   }
 }
