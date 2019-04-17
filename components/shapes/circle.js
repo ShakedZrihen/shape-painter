@@ -54,10 +54,10 @@ class Circle extends BaseShape {
   draw(event) {
     if (event) {
       const point = this.canvas.getMousePosition(event);
-      this.radius =
-        this.center.x - point.x < 0
-          ? -1 * (this.center.x - point.x)
-          : this.center.x - point.x;
+      this.radius = Math.sqrt(
+        Math.pow(this.center.x - point.x, 2) +
+          Math.pow(this.center.y - point.y, 2)
+      );
     }
     let x = 0;
     let y = this.radius;
