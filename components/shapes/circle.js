@@ -3,11 +3,11 @@
  */
 
 class Circle extends BaseShape {
-  constructor(canvas, x = null, y = null, radius = null) {
+  constructor(canvas, center, radius = null) {
     super(canvas);
     this.center = null;
-    if (x && y) {
-      this.center = new Point(x, y);
+    if (center) {
+      this.center = center;
     }
     this.radius = radius;
     this.isDown = false;
@@ -31,7 +31,7 @@ class Circle extends BaseShape {
   handleMouseUp(event) {
     if (this.radius) {
       this.canvas.storedSapes.push(
-        new Circle(this.canvas, this.center.x, this.center.y, this.radius)
+        new Circle(this.canvas, this.center, this.radius)
       );
       this.isDown = false;
       this.center = null;

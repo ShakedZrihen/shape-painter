@@ -9,6 +9,7 @@ class Canvas {
     this.ctx = null;
     this.isMouseDown = false;
     this.context = null;
+    this.points = [];
     this.storedSapes = [];
     this.redoItems = [];
   }
@@ -50,7 +51,9 @@ class Canvas {
     const y =
       ((event.clientY - rect.top) / (rect.bottom - rect.top)) *
       this.canvas.height;
-    return new Point(x, y);
+    const mousePoint = new Point(x, y);
+    this.points.push(mousePoint);
+    return this.points[this.points.length - 1];
   }
 
   redrawStoredShapes() {
