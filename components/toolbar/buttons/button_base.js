@@ -11,9 +11,7 @@ class ButtonBase {
 
   init() {
     this.btn = document.getElementById(this.name);
-    this.btn.addEventListener("click", event => {
-      this.handleButtonPress(event);
-    });
+    this.btn.addEventListener("click", this.handleButtonPress);
   }
 
   handleButtonPress(event) {

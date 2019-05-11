@@ -49,9 +49,18 @@ button {
   stroke: transparent;
 }
 
+#importBtn,
+#exportBtn {
+  color: black;
+  width: 100px;
+  height: 25px;
+  margin-left: 5px;
+  background-color: #3ecbff;
+}
+
 header {
   width: 100%;
-  height: 30px;
+  height: 40px;
 }
 
 #number-of-lines {
