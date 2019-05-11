@@ -54,4 +54,8 @@ class BezierCurve extends BaseShape {
       startPoint = p;
     }
   }
+
+  type() {
+    return "Bezier curve";
+  }
 }

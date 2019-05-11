@@ -52,4 +52,8 @@ class BaseShape {
   handleMouseUp(event) {}
 
   handleMouseClick(event) {}
+
+  type() {
+    return "Base Shape";
+  }
 }

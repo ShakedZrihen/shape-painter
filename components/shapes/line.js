@@ -62,4 +62,8 @@ class Line extends BaseShape {
       this.drawPixel(x, y);
     }
   }
+
+  type() {
+    return "Line";
+  }
 }

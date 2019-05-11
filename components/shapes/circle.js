@@ -77,4 +77,8 @@ class Circle extends BaseShape {
       this.plotCirclePoint(x, y);
     }
   }
+
+  type() {
+    return "Circle";
+  }
 }

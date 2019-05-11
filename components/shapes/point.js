@@ -18,4 +18,8 @@ class Point {
   add(point) {
     return new Point(this.x + point.x, this.y + point.y);
   }
+
+  equal(point) {
+    return this.x == point.x && this.y == point.y;
+  }
 }

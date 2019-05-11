@@ -40,6 +40,16 @@ class Canvas {
     this.context.init();
   }
 
+  addPoint(point) {
+    for (let i = 0; i < this.points.length; i++) {
+      if (point.equal(this.points[i])) {
+        return i;
+      }
+    }
+    this.points.push(point);
+    return this.points.length - 1;
+  }
+
   getMousePosition(event) {
     if (!this.isInitialize) {
       init();
@@ -51,9 +61,7 @@ class Canvas {
     const y =
       ((event.clientY - rect.top) / (rect.bottom - rect.top)) *
       this.canvas.height;
-    const mousePoint = new Point(x, y);
-    this.points.push(mousePoint);
-    return this.points[this.points.length - 1];
+    return new Point(x, y);
   }
 
   redrawStoredShapes() {
