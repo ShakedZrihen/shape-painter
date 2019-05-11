@@ -58,6 +58,13 @@ button {
   background-color: #3ecbff;
 }
 
+input[type="file"] {
+  display: block;
+  float: left;
+  margin-left: 630px;
+  width: 162px;
+}
+
 header {
   width: 100%;
   height: 40px;
