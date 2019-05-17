@@ -2,7 +2,7 @@
  *   Created by Ligal Levy & Shaked Zrihen
  */
 
-class ExportBtn extends ShapeButtonBase {
+class ExportBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);
     this.output = {

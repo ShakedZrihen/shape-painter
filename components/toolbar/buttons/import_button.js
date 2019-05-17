@@ -42,15 +42,15 @@ function parseFile(file, paint) {
   paint.canvas.redrawStoredShapes();
 }
 
-class ImportBtn extends ShapeButtonBase {
+class ImportBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);
   }
 
   handleButtonPress(event) {
     const files = document.getElementById("inputFile").files;
-    if (files.length < 1) {
-      alert("You should choose a file first");
+    if (files.length !== 1) {
+      alert("Please choose a file and than push import");
       return;
     }
 

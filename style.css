@@ -33,11 +33,18 @@
 }
 
 .fa-slash,
-.fa-project-diagram {
+.fa-project-diagram,
+.fa-expand,
+.fa-arrows-alt {
   font-size: 16px;
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: black;
 }
+
+/* .fa-expand,
+.fa-arrows-alt {
+  padding-top: 50px;
+} */
 
 button {
   border: none;
@@ -78,7 +85,7 @@ header {
 
 #set-number-of-lines {
   display: none;
-  margin-top: 100px;
+  margin-top: 60px;
   float: left;
 }
 
