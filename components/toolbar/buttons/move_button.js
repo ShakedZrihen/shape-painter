@@ -10,6 +10,7 @@ class MoveBtn extends ButtonBase {
   handleButtonPress(event) {
     const REPLACE_WITH_MOVE_X = 50;
     const REPLACE_WITH_MOVE_Y = 0;
+    this.paint.canvas.update();
     for (let i = 0; i < this.paint.canvas.points.length; ++i) {
       const point = this.paint.canvas.points[i];
       point.x = point.x + REPLACE_WITH_MOVE_X;

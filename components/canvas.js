@@ -125,6 +125,10 @@ class Canvas {
     });
   }
 
+  update() {
+    this.importCanvas(this.outputCanvas());
+  }
+
   importCanvas(canvasFile) {
     this.points = [];
     canvasFile.points.forEach(point => {
