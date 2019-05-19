@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen
+ */
+
 class BezierCurve extends BaseShape {
   constructor(canvas, controlPoints = [], numberOfLines = 100) {
     super(canvas);
