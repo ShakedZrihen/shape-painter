@@ -57,6 +57,7 @@ class Canvas {
 
   update() {
     this.importCanvas(this.exportCanvas());
+    this.centerPoint = this.calculateCenter();
   }
 
   importCanvas(canvasFile) {

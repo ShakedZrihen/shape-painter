@@ -27,12 +27,16 @@ class ScaleBtn extends ButtonBase {
       return;
     }
     Transform.scale(canvas, scaleRatio);
+    canvas.update();
     canvas.redrawStoredShapes();
   }
 
   clearSelect() {
     this.btn.style.backgroundColor = "";
     document.getElementById("setter").style.display = "none";
+    const setterBtn = document.getElementById("setter-btn");
+    const new_element = setterBtn.cloneNode(true);
+    setterBtn.parentNode.replaceChild(new_element, setterBtn);
   }
 
   select() {

@@ -33,7 +33,7 @@ class MoveBtn extends ButtonBase {
     if (this.firstPoint) {
       this.paint.canvas.update();
       const sPoint = this.paint.canvas.getMousePosition(event);
-      Transform.move(this.paint.canvas.points, this.firstPoint, sPoint);
+      Transform.move(this.paint.canvas, this.firstPoint, sPoint);
       this.paint.canvas.redrawStoredShapes();
       this.firstPoint = sPoint;
     }

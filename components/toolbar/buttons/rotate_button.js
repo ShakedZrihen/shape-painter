@@ -27,7 +27,7 @@ class RotateBtn extends ButtonBase {
       return;
     }
     const angle = (degree * Math.PI) / 180;
-    Transform.rotate(canvas.points, canvas.calculateCenter(), angle);
+    Transform.rotate(canvas, canvas.calculateCenter(), angle);
     canvas.update();
     canvas.redrawStoredShapes();
   }
@@ -35,6 +35,9 @@ class RotateBtn extends ButtonBase {
   clearSelect() {
     this.btn.style.backgroundColor = "";
     document.getElementById("setter").style.display = "none";
+    const setterBtn = document.getElementById("setter-btn");
+    const new_element = setterBtn.cloneNode(true);
+    setterBtn.parentNode.replaceChild(new_element, setterBtn);
   }
 
   select() {
