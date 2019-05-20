@@ -21,7 +21,7 @@ class ExportBtn extends ButtonBase {
   }
 
   handleButtonPress(event) {
-    const output = this.paint.canvas.outputCanvas();
+    const output = this.paint.canvas.exportCanvas();
     this.export(output);
   }
 

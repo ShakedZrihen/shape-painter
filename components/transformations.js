@@ -43,4 +43,32 @@ class Transform {
     }
     canvas.update();
   }
+
+  static flipX(canvas) {
+    canvas.update();
+    const tempCenter = canvas.centerPoint;
+    Transform.move(canvas, canvas.centerPoint, new Point(0, 0));
+
+    for (let i = 0; i < canvas.points.length; ++i) {
+      const point = canvas.points[i];
+      point.y = point.y * -1;
+    }
+    Transform.move(canvas, new Point(0, 0), tempCenter);
+
+    canvas.update();
+  }
+
+  static flipY(canvas) {
+    canvas.update();
+    const tempCenter = canvas.centerPoint;
+    Transform.move(canvas, canvas.centerPoint, new Point(0, 0));
+
+    for (let i = 0; i < canvas.points.length; ++i) {
+      const point = canvas.points[i];
+      point.x = point.x * -1;
+    }
+    Transform.move(canvas, new Point(0, 0), tempCenter);
+
+    canvas.update();
+  }
 }
