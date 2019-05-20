@@ -8,6 +8,8 @@ class ScaleBtn extends ButtonBase {
   }
 
   handleButtonPress(event) {
+    this.paint.toolbar.clearSelected();
+    this.select();
     const REPLACE_WITH_SCALE_SIZE = 0.5;
     for (let i = 0; i < this.paint.canvas.storedSapes.length; ++i) {
       let currentShape = this.paint.canvas.storedSapes[i];
@@ -23,6 +25,15 @@ class ScaleBtn extends ButtonBase {
     this.paint.canvas.redrawStoredShapes();
   }
 
-  clearSelect() {}
-  select() {}
+  rescale() {}
+
+  clearSelect() {
+    this.btn.style.backgroundColor = "";
+    document.getElementById("set-number-of-lines").style.display = "none";
+  }
+
+  select() {
+    this.btn.style.backgroundColor = "#282828";
+    document.getElementById("set-number-of-lines").style.display = "block";
+  }
 }

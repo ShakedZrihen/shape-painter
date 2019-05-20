@@ -14,89 +14,18 @@ class Canvas {
     this.redoItems = [];
   }
 
-  addCircleToOutput(currentShape, output) {
-    const circle = {
-      radius: currentShape.radius
-    };
-    for (let j = 0; j < output.points.length; ++j) {
-      if (currentShape.center.equal(output.points[j])) {
-        circle.center = j;
-        break;
-      }
-    }
-    if (!circle.center) {
-      output.points.push(currentShape.center);
-      circle.center = output.points.length - 1;
-    }
-    output.circles.push(circle);
-  }
-
-  addLineToOutput(currentShape, output) {
-    let line = {};
-
-    for (let j = 0; j < output.points.length; ++j) {
-      if (currentShape.startPoint.equal(output.points[j])) {
-        line.startPoint = j;
-      }
-      if (currentShape.endPoint.equal(output.points[j])) {
-        line.endPoint = j;
-      }
-    }
-    if (!line.startPoint) {
-      output.points.push(currentShape.startPoint);
-      line.startPoint = output.points.length - 1;
-    }
-    if (!line.endPoint) {
-      output.points.push(currentShape.endPoint);
-      line.endPoint = output.points.length - 1;
-    }
-    output.lines.push(line);
-  }
-
-  addBezierCurveToOutput(currentShape, output) {
-    let bezierCurve = { controlPoints: [] };
-    let indexesFound = [];
-    for (let i = 0; i < currentShape.controlPoints.length; ++i) {
-      for (let j = 0; j < output.points.length; ++j) {
-        if (currentShape.controlPoints[i].equal(output.points[j])) {
-          indexesFound.push(i);
-        }
-      }
-    }
-    for (let i = 0; i < currentShape.controlPoints.length; ++i) {
-      let flag = false;
-      for (let j = 0; j < indexesFound.length; ++j) {
-        if (indexesFound[j] === i) {
-          bezierCurve.controlPoints.push(j);
-          flag = true;
-        }
-      }
-      if (!flag) {
-        output.points.push(currentShape.controlPoints[i]);
-        bezierCurve.controlPoints.push(output.points.length - 1);
-      }
-    }
-    output.bezierCurves.push(bezierCurve);
-  }
-
-  outputCanvas() {
-    const output = {
-      points: [],
-      lines: [],
-      circles: [],
-      bezierCurves: []
-    };
-    for (let i = 0; i < this.storedSapes.length; ++i) {
-      let currentShape = this.storedSapes[i];
-      if (currentShape.type() === "Circle") {
-        this.addCircleToOutput(currentShape, output);
-      } else if (currentShape.type() === "Line") {
-        this.addLineToOutput(currentShape, output);
-      } else if (currentShape.type() === "Bezier curve") {
-        this.addBezierCurveToOutput(currentShape, output);
-      }
-    }
-    return output;
+  exportCanvas() {
+    const output = new OutputBuilder();
+    const circles = this.storedSapes.filter(shape => shape.type() === "Circle");
+    const lines = this.storedSapes.filter(shape => shape.type() === "Line");
+    const curves = this.storedSapes.filter(
+      shape => shape.type() === "Bezier curve"
+    );
+    return output
+      .withCirclesIfExist(circles)
+      .withLinesIfExist(lines)
+      .withBezierCurvesIfExist(curves)
+      .build();
   }
 
   importLines(lines) {
@@ -126,7 +55,7 @@ class Canvas {
   }
 
   update() {
-    this.importCanvas(this.outputCanvas());
+    this.importCanvas(this.exportCanvas());
   }
 
   importCanvas(canvasFile) {
@@ -144,22 +73,6 @@ class Canvas {
   init() {
     this.ctx = canvas.getContext("2d"); // Set canves to 2d canvac
     this.isInitialize = true;
-  }
-
-  undo() {
-    if (this.storedSapes.length > 0) {
-      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.redoItems.push(this.storedSapes.pop());
-      this.redrawStoredShapes();
-    }
-  }
-
-  redo() {
-    if (this.redoItems.length > 0) {
-      this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-      this.storedSapes.push(this.redoItems.pop());
-      this.redrawStoredShapes();
-    }
   }
 
   setContext(shape) {

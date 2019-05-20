@@ -15,8 +15,6 @@ class BezierBtn extends ShapeButtonBase {
   }
 
   clearSelect() {
-    const setLines = document.getElementById("set-number-of-lines");
-    setLines.style.display = "none";
     this.btn.style.backgroundColor = "";
   }
 
@@ -29,8 +27,6 @@ class BezierBtn extends ShapeButtonBase {
   }
 
   select() {
-    const setLines = document.getElementById("set-number-of-lines");
-    setLines.style.display = "block";
     this.btn.style.backgroundColor = "#282828";
     const setBtn = document.getElementById("set-number-of-lines-btn");
     setBtn.addEventListener("click", event => {
