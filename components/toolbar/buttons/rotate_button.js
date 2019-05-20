@@ -2,7 +2,7 @@
  *   Created by Ligal Levy & Shaked Zrihen
  */
 
-class ScaleBtn extends ButtonBase {
+class RotateBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);
   }
@@ -13,20 +13,22 @@ class ScaleBtn extends ButtonBase {
     this.paint.canvas.clearListeners();
     const setterBtn = document.getElementById("setter-btn");
     setterBtn.addEventListener("click", event =>
-      this.rescale(this.paint.canvas)
+      this.rotate(this.paint.canvas)
     );
-    setterBtn.innerHTML = "scale";
-    document.getElementById("setter-value").value = 1.0;
+    setterBtn.innerHTML = "rotate";
+    document.getElementById("setter-value").value = 45;
   }
 
-  rescale(canvas) {
+  rotate(canvas) {
     canvas.update();
-    const scaleRatio = document.getElementById("setter-value").value;
-    if (isNaN(scaleRatio) || scaleRatio <= 0) {
-      alert("Must input a positive number");
+    const degree = document.getElementById("setter-value").value;
+    if (isNaN(degree)) {
+      alert("Must input a number");
       return;
     }
-    Transform.scale(canvas, scaleRatio);
+    const angle = (degree * Math.PI) / 180;
+    Transform.rotate(canvas.points, canvas.calculateCenter(), angle);
+    canvas.update();
     canvas.redrawStoredShapes();
   }
 

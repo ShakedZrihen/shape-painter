@@ -10,6 +10,7 @@ class Canvas {
     this.isMouseDown = false;
     this.context = null;
     this.points = [];
+    this.centerPoint = null;
     this.storedSapes = [];
     this.redoItems = [];
   }
@@ -68,11 +69,21 @@ class Canvas {
     this.importCircles(canvasFile.circles);
     this.importBezierCurves(canvasFile.bezierCurves);
     this.redrawStoredShapes();
+    this.centerPoint = this.calculateCenter();
   }
 
   init() {
     this.ctx = canvas.getContext("2d"); // Set canves to 2d canvac
     this.isInitialize = true;
+  }
+
+  calculateCenter() {
+    const minAndMaxPoint = calculateMaxAndMinPointsInArray(this.points);
+    const max = minAndMaxPoint[MAX];
+    const min = minAndMaxPoint[MIN];
+    const centerX = Math.round(max.x - (max.x - min.x) / 2);
+    const centerY = Math.round(max.y - (max.y - min.y) / 2);
+    return new Point(centerX, centerY);
   }
 
   setContext(shape) {

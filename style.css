@@ -35,12 +35,21 @@
 .fa-slash,
 .fa-project-diagram,
 .fa-expand,
-.fa-arrows-alt {
+.fa-arrows-alt,
+.fa-undo {
   font-size: 16px;
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: black;
 }
 
+#transformations,
+#shapes {
+  display: block;
+}
+
+#shapes {
+  height: 130px;
+}
 /* .fa-expand,
 .fa-arrows-alt {
   padding-top: 50px;
