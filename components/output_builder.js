@@ -1,5 +1,5 @@
 class OutputBuilder {
-  constructor(canvas) {
+  constructor() {
     this.output = {
       points: [],
       lines: [],
