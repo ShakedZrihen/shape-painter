@@ -77,19 +77,20 @@ header {
   height: 40px;
 }
 
-#number-of-lines {
+#setter-value {
   width: 19px;
   height: 19px;
   margin-left: 4px;
 }
 
-#set-number-of-lines {
+#setter {
   display: none;
   margin-top: 60px;
   float: left;
 }
 
-#set-number-of-lines-btn {
+#setter-btn {
   color: white;
   text-align: center;
+  padding: 0;
 }
