@@ -2,7 +2,7 @@
  *   Created by Ligal Levy & Shaked Zrihen
  */
 
-class MoveBtn extends ButtonBase {
+class SnipBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);
     this.isMouseDown = false;
@@ -25,14 +25,21 @@ class MoveBtn extends ButtonBase {
   }
 
   handleMouseDown(event) {
+    this.paint.canvas.update();
+    const minMax = calculateMaxAndMinPointsInArray(this.paint.canvas.points);
+    const minY = minMax[MIN].y;
     this.firstPoint = this.paint.canvas.getMousePosition(event);
+    // Check if mouse on top of the shape
+    if (this.firstPoint.y < minY - 20 || this.firstPoint.y > minY + 20) {
+      this.firstPoint = null;
+    }
   }
 
   handleMouseMove(event) {
     if (this.firstPoint) {
       this.paint.canvas.update();
       const sPoint = this.paint.canvas.getMousePosition(event);
-      Transform.move(this.paint.canvas, this.firstPoint, sPoint);
+      Transform.shearing(this.paint.canvas, this.firstPoint, sPoint);
       this.paint.canvas.redrawStoredShapes();
       this.firstPoint = sPoint;
     }

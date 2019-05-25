@@ -44,6 +44,19 @@ class Transform {
     canvas.update();
   }
 
+  static shearing(canvas, firstPoint, secondPoint) {
+    const aX = -1 * (secondPoint.x - firstPoint.x);
+    const tempCenter = canvas.centerPoint;
+    Transform.move(canvas, canvas.centerPoint, new Point(0, 0));
+
+    for (let i = 0; i < canvas.points.length; ++i) {
+      const point = canvas.points[i];
+      point.x = point.x + 0.01 * aX * point.y;
+    }
+    Transform.move(canvas, new Point(0, 0), tempCenter);
+    canvas.update();
+  }
+
   static flipX(canvas) {
     canvas.update();
     const tempCenter = canvas.centerPoint;

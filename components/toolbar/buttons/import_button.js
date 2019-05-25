@@ -24,7 +24,6 @@ function drawBezierCurves(points, bezierCurves, canvas) {
     bezierCurve.controlPoints.forEach(point => {
       controlPoints.push(points[point]);
     });
-    console.log(controlPoints);
     canvas.storedSapes.push(new BezierCurve(canvas, controlPoints));
   });
 }
