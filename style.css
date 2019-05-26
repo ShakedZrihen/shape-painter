@@ -25,7 +25,7 @@
 }
 
 .fa-circle,
-.fa-undo,
+.fa-redo,
 .fa-redo {
   font-size: 20px;
   -webkit-text-stroke: 0.5px;
@@ -36,10 +36,18 @@
 .fa-project-diagram,
 .fa-expand,
 .fa-arrows-alt,
-.fa-undo {
+.fa-redo {
   font-size: 16px;
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: black;
+}
+
+#helpBtn {
+  position: absolute;
+  bottom: 10%;
+  left: 1%;
+  color: red;
+  font-size: 80px;
 }
 
 #transformations,

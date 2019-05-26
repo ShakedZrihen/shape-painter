@@ -57,7 +57,13 @@ class ImportBtn extends ShapeButtonBase {
 
     const reader = new FileReader();
     reader.onload = function(e) {
-      paint.canvas.importCanvas(JSON.parse(reader.result), true);
+      try {
+        paint.canvas.importCanvas(JSON.parse(reader.result), true);
+      } catch {
+        alert(
+          "Invalid file format! please read help file for the correct format"
+        );
+      }
     };
 
     reader.readAsText(files[0], "utf-8");
