@@ -1,5 +1,5 @@
 /*
- *   Created by Ligal Levy & Shaked Zrihen
+ *   Created by Ligal Levy & Shaked Zrihen & Chen Shavit
  */
 
 class Transform {
@@ -110,23 +110,25 @@ class Transform {
       -1 * maxMinPoints[MIN].x,
       -1 * maxMinPoints[MIN].y
     );
-    const dx =
-      maxMinPoints[MAX].x === canvas.canvas.width
-        ? canvas.canvas.width
-        : maxMinPoints[MAX].x - canvas.canvas.width;
-    const dy =
-      maxMinPoints[MAX].y === canvas.canvas.height
-        ? canvas.canvas.height
-        : maxMinPoints[MAX].y - canvas.canvas.height;
-    const maxmax = Math.abs(
-      Math.max(canvas.canvas.width / dx, canvas.canvas.height / dy)
-    );
-    Transform.scale(canvas, maxmax * 0.4, maxmax * 0.4, updateCanvas);
+    const S =
+      Math.abs(
+        Math.min(
+          canvas.canvas.width / maxMinPoints[MAX].x,
+          canvas.canvas.height / maxMinPoints[MAX].y
+        )
+      ) * 0.8;
+    Transform.scale(canvas, S, S, updateCanvas);
     maxMinPoints = calculateMaxAndMinPointsInArray(canvas.points);
     Transform.moveBy(
       canvas,
-      -0.8 * maxMinPoints[MIN].x,
-      -0.8 * maxMinPoints[MIN].y
+      -1 * maxMinPoints[MIN].x,
+      -1 * maxMinPoints[MIN].y
+    );
+    maxMinPoints = calculateMaxAndMinPointsInArray(canvas.points);
+    Transform.moveBy(
+      canvas,
+      0.1 * maxMinPoints[MAX].x,
+      0.1 * maxMinPoints[MAX].y
     );
     if (updateCanvas) {
       canvas.update();

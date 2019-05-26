@@ -1,5 +1,5 @@
 /*
- *   Created by Ligal Levy & Shaked Zrihen
+ *   Created by Ligal Levy & Shaked Zrihen & Chen Shavit
  */
 
 class FlipYBtn extends ButtonBase {
@@ -22,6 +22,6 @@ class FlipYBtn extends ButtonBase {
   }
 
   select() {
-    this.btn.style.backgroundColor = "#282828";
+    this.btn.style.backgroundColor = "";
   }
 }

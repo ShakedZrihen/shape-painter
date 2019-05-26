@@ -2,7 +2,7 @@
  *   Created by Ligal Levy & Shaked Zrihen & Chen Shavit
  */
 
-class FlipXBtn extends ButtonBase {
+class FitBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);
     this.isMouseDown = false;
@@ -13,7 +13,7 @@ class FlipXBtn extends ButtonBase {
     this.paint.toolbar.clearSelected();
     this.select();
     this.paint.canvas.clearListeners();
-    Transform.flipX(this.paint.canvas);
+    Transform.fit(this.paint.canvas, true);
     this.paint.canvas.redrawStoredShapes();
   }
 
