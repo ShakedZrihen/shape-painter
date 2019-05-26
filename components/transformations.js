@@ -22,13 +22,15 @@ class Transform {
   }
   static rotate(canvas, centerPoint, angle) {
     const tempCenter = centerPoint;
+    const cosA = Math.cos(angle);
+    const sinA = Math.sin(angle);
     Transform.move(canvas, centerPoint, new Point(0, 0));
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
       const tempx = point.x;
       const tempy = point.y;
-      point.x = tempx * Math.cos(angle) - tempy * Math.sin(angle);
-      point.y = tempx * Math.sin(angle) + tempy * Math.cos(angle);
+      point.x = tempx * cosA - tempy * sinA;
+      point.y = tempx * sinA + tempy * cosA;
     }
     Transform.move(canvas, new Point(0, 0), tempCenter);
     canvas.update();
@@ -45,15 +47,15 @@ class Transform {
   }
 
   static shearing(canvas, firstPoint, secondPoint) {
-    const aX = -1 * (secondPoint.x - firstPoint.x);
-    const tempCenter = canvas.centerPoint;
-    Transform.move(canvas, canvas.centerPoint, new Point(0, 0));
-
+    const dx = -1 * (secondPoint.x - firstPoint.x);
+    const max = calculateMaxAndMinPointsInArray(canvas.points)[MAX];
+    const a = 0.006 * dx;
+    Transform.move(canvas, max, new Point(0, 0));
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
-      point.x = point.x + 0.01 * aX * point.y;
+      point.x = point.x + a * point.y;
     }
-    Transform.move(canvas, new Point(0, 0), tempCenter);
+    Transform.move(canvas, new Point(0, 0), max);
     canvas.update();
   }
 

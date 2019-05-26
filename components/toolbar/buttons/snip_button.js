@@ -38,6 +38,7 @@ class SnipBtn extends ButtonBase {
   handleMouseMove(event) {
     if (this.firstPoint) {
       this.paint.canvas.update();
+
       const sPoint = this.paint.canvas.getMousePosition(event);
       Transform.shearing(this.paint.canvas, this.firstPoint, sPoint);
       this.paint.canvas.redrawStoredShapes();

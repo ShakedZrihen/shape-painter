@@ -1,1 +1,16 @@
-{"points":[{"x":229.99999999999997,"y":162},{"x":228.00000000000003,"y":347},{"x":424,"y":348},{"x":424,"y":157},{"x":229.99999999999997,"y":160}],"lines":[{"startPoint":0,"endPoint":1},{"startPoint":1,"endPoint":2},{"startPoint":2,"endPoint":3},{"startPoint":3,"endPoint":4}],"circles":[],"bezierCurves":[]}
+{
+  "points": [
+    { "x": 229, "y": 162 },
+    { "x": 229, "y": 347 },
+    { "x": 424, "y": 347 },
+    { "x": 424, "y": 162 }
+  ],
+  "lines": [
+    { "startPoint": 0, "endPoint": 1 },
+    { "startPoint": 1, "endPoint": 2 },
+    { "startPoint": 2, "endPoint": 3 },
+    { "startPoint": 3, "endPoint": 0 }
+  ],
+  "circles": [],
+  "bezierCurves": []
+}
