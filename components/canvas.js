@@ -60,7 +60,7 @@ class Canvas {
     this.centerPoint = this.calculateCenter();
   }
 
-  importCanvas(canvasFile) {
+  importCanvas(canvasFile, fit = false) {
     this.points = [];
     canvasFile.points.forEach(point => {
       this.points.push(new Point(point.x, point.y));
@@ -69,6 +69,9 @@ class Canvas {
     this.importLines(canvasFile.lines);
     this.importCircles(canvasFile.circles);
     this.importBezierCurves(canvasFile.bezierCurves);
+    if (fit) {
+      Transform.fit(this);
+    }
     this.redrawStoredShapes();
     this.centerPoint = this.calculateCenter();
   }

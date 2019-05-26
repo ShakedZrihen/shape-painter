@@ -12,22 +12,20 @@ class ScaleBtn extends ButtonBase {
     this.select();
     this.paint.canvas.clearListeners();
     const setterBtn = document.getElementById("setter-btn");
-    setterBtn.addEventListener("click", event =>
-      this.rescale(this.paint.canvas)
-    );
+    setterBtn.addEventListener("click", event => {
+      this.rescale(this.paint.canvas);
+    });
     setterBtn.innerHTML = "scale";
     document.getElementById("setter-value").value = 1.0;
   }
 
   rescale(canvas) {
-    canvas.update();
     const scaleRatio = document.getElementById("setter-value").value;
     if (isNaN(scaleRatio) || scaleRatio <= 0) {
       alert("Must input a positive number");
       return;
     }
-    Transform.scale(canvas, scaleRatio);
-    canvas.update();
+    Transform.scale(canvas, scaleRatio, scaleRatio);
     canvas.redrawStoredShapes();
   }
 

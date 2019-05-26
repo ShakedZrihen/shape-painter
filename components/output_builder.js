@@ -19,7 +19,7 @@ class OutputBuilder {
             break;
           }
         }
-        if (!circle.center) {
+        if (!circle.center && circle.center !== 0) {
           this.output.points.push(element.center);
           circle.center = this.output.points.length - 1;
         }
@@ -42,11 +42,11 @@ class OutputBuilder {
             line.endPoint = j;
           }
         }
-        if (!line.startPoint) {
+        if (!line.startPoint && line.startPoint !== 0) {
           this.output.points.push(element.startPoint);
           line.startPoint = this.output.points.length - 1;
         }
-        if (!line.endPoint) {
+        if (!line.endPoint && line.endPoint !== 0) {
           this.output.points.push(element.endPoint);
           line.endPoint = this.output.points.length - 1;
         }
