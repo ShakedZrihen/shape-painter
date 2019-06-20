@@ -23,6 +23,7 @@ class Canvas3D {
      * }
      */
     this.points = [];
+    this.polygons = [];
     canvasFile.points.forEach(point => {
       this.points.push(new Point3D(point.x, point.y, point.z));
     });
@@ -85,6 +86,7 @@ class Canvas3D {
   }
 
   redrawPolygons() {
+    console.log(this.polygons.length);
     // Draw from min Z to max Z
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.polygons.length === 0) {

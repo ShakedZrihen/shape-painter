@@ -2,7 +2,7 @@ class Polygon {
   constructor(
     canvas,
     points,
-    lineColor = null,
+    lineColor = "#000000",
     fillColor = null,
     visible = true
   ) {
@@ -95,6 +95,8 @@ class Polygon {
     this.canvas.ctx.lineTo(thirdPoint.x, thirdPoint.y);
     this.canvas.ctx.closePath();
     this.canvas.ctx.fill();
+    this.canvas.ctx.strokeStyle = this.lineColor;
+    this.canvas.ctx.stroke();
   }
 
   draw(projection) {
