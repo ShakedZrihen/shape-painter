@@ -87,6 +87,14 @@ class Polygon {
     return color;
   }
 
+  getMaxZ() {
+    let max = this.points[0].z;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].z > max) max = this.points[i].z;
+    }
+    return max;
+  }
+
   drawPolygon(firstPoint, secondPoint, thirdPoint) {
     this.canvas.ctx.fillStyle = this.fillColor || this.randomColor();
     this.canvas.ctx.beginPath();

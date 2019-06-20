@@ -47,7 +47,7 @@ class Canvas3D {
         // Split to 2 polygons (0,1,2)^ AND (1,2,3)v
         const p4 = this.points[polygon[3]];
         polygonPoints = [
-          new Point3D(p2.x, p2.y, p2.z),
+          new Point3D(p1.x, p1.y, p1.z),
           new Point3D(p3.x, p3.y, p3.z),
           new Point3D(p4.x, p4.y, p4.z)
         ];
@@ -88,6 +88,14 @@ class Canvas3D {
   redrawPolygons() {
     console.log(this.polygons.length);
     // Draw from min Z to max Z
+    console.log("poligons: ");
+    console.log(this.polygons);
+    this.polygons.sort((a, b) =>
+      a.getMaxZ() > b.getMaxZ() ? 1 : a.getMaxZ() < b.getMaxZ() ? -1 : 0
+    );
+    console.log("poligons after: ");
+    console.log(this.polygons);
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.polygons.length === 0) {
       return;
