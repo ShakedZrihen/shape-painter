@@ -11,7 +11,7 @@ class Paint {
   init() {
     if (!this.canvas) {
       const canvasElement = document.getElementById("canvas"); // Create new canvas
-      this.canvas = new Canvas(canvasElement);
+      this.canvas = new Canvas3D(canvasElement);
       this.canvas.init();
     }
   }

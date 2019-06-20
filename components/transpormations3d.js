@@ -40,9 +40,9 @@ class Transform3D {
       ];
       const scaledPoints = multiplyMatrix(pointVector, scaleMatrix);
 
-      point.x = scaledPoints[(0, 0)];
-      point.y = scaledPoints[(0, 1)];
-      point.z = scaledPoints[(0, 2)];
+      point.x = scaledPoints[0][0];
+      point.y = scaledPoints[0][1];
+      point.z = scaledPoints[0][2];
     }
 
     // Back to real position
@@ -80,7 +80,7 @@ class Transform3D {
       [0, 0, 0, 1]
     ];
 
-    const rotateMatrixY = [
+    const rotateMatrixZ = [
       [cosZ, sinZ, 0, 0],
       [-sinZ, cosZ, 0, 0],
       [0, 0, 1, 0],
@@ -99,9 +99,9 @@ class Transform3D {
       const rotateY = multiplyMatrix(rotateX, rotateMatrixY);
       const rotateZ = multiplyMatrix(rotateY, rotateMatrixZ);
 
-      point.x = rotateX[(0, 0)];
-      point.y = rotateY[(0, 1)];
-      point.z = rotateZ[(0, 2)];
+      point.x = rotateX[0][0];
+      point.y = rotateY[0][1];
+      point.z = rotateZ[0][2];
     }
 
     // Back to real position
