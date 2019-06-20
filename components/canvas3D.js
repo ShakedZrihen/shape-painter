@@ -11,6 +11,7 @@ class Canvas3D {
     this.points = [];
     this.centerPoint = null;
     this.polygons = [];
+    this.file = null;
     this.projection = "prespective";
   }
 
@@ -22,6 +23,7 @@ class Canvas3D {
      *    polygons: [[point, point, point], [point, point, point, point],...]
      * }
      */
+    this.file = canvasFile;
     this.points = [];
     this.polygons = [];
     canvasFile.points.forEach(point => {
@@ -86,15 +88,39 @@ class Canvas3D {
   }
 
   redrawPolygons() {
-    console.log(this.polygons.length);
+    this.polygons = [];
+    this.file.polygons.forEach(polygon => {
+      if (polygon.length < 3 || polygon.length > 4) {
+        throw new Error("Polygon has 3 or 4 points");
+      }
+      const p1 = this.points[polygon[0]];
+      const p2 = this.points[polygon[1]];
+      const p3 = this.points[polygon[2]];
+
+      let polygonPoints = [
+        new Point3D(p1.x, p1.y, p1.z),
+        new Point3D(p2.x, p2.y, p2.z),
+        new Point3D(p3.x, p3.y, p3.z)
+      ];
+      // console.log(JSON.stringify(polygonPoints, null, 2));
+
+      this.polygons.push(new Polygon(this, polygonPoints));
+      if (polygon.length > 3) {
+        // Split to 2 polygons (0,1,2)^ AND (1,2,3)v
+        const p4 = this.points[polygon[3]];
+        polygonPoints = [
+          new Point3D(p1.x, p1.y, p1.z),
+          new Point3D(p3.x, p3.y, p3.z),
+          new Point3D(p4.x, p4.y, p4.z)
+        ];
+        this.polygons.push(new Polygon(this, polygonPoints));
+      }
+    });
     // Draw from min Z to max Z
-    console.log("poligons: ");
-    console.log(this.polygons);
+
     this.polygons.sort((a, b) =>
       a.getMaxZ() > b.getMaxZ() ? 1 : a.getMaxZ() < b.getMaxZ() ? -1 : 0
     );
-    console.log("poligons after: ");
-    console.log(this.polygons);
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.polygons.length === 0) {

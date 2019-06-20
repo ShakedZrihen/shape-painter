@@ -20,16 +20,15 @@ class RotateBtn extends ButtonBase {
   }
 
   rotate(canvas) {
-    canvas.update();
     const degree = document.getElementById("setter-value").value;
     if (isNaN(degree)) {
       alert("Must input a number");
       return;
     }
     const angle = (degree * Math.PI) / 180;
-    Transform.rotate(canvas, canvas.calculateCenter(), angle);
-    canvas.update();
-    canvas.redrawStoredShapes();
+    canvas.calculateCenter();
+    Transform3D.rotate(canvas, canvas.centerPoint, new Point3D(angle, 0, 0));
+    canvas.redrawPolygons();
   }
 
   clearSelect() {

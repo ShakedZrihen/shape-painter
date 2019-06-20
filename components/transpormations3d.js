@@ -1,21 +1,17 @@
 class Transform3D {
-  static move(canvas, firstPoint, secondPoint, updateCanvas = true) {
+  static move(canvas, firstPoint, secondPoint) {
     const aX = secondPoint.x - firstPoint.x;
     const aY = secondPoint.y - firstPoint.y;
     const aZ = secondPoint.z - firstPoint.z;
-    Transform3D.moveBy(canvas, aX, aY, aZ, updateCanvas);
+    Transform3D.moveBy(canvas, aX, aY, aZ);
   }
 
-  static moveBy(canvas, x, y, z, updateCanvas = true) {
+  static moveBy(canvas, x, y, z) {
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
       point.x = point.x + x;
       point.y = point.y + y;
       point.z = point.z + z;
-    }
-
-    if (updateCanvas) {
-      canvas.update();
     }
   }
 
@@ -53,7 +49,7 @@ class Transform3D {
     }
   }
 
-  static rotate(canvas, centerPoint, angleVector, updateCanvas = true) {
+  static rotate(canvas, centerPoint, angleVector) {
     // save the first center because it can change while we change the points
     const tempCenter = centerPoint;
 
@@ -87,7 +83,7 @@ class Transform3D {
       [0, 0, 0, 1]
     ];
 
-    Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0), false);
+    Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0));
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
 
@@ -105,9 +101,6 @@ class Transform3D {
     }
 
     // Back to real position
-    Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter, false);
-    if (updateCanvas) {
-      canvas.update();
-    }
+    Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter);
   }
 }
