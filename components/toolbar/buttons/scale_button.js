@@ -25,8 +25,12 @@ class ScaleBtn extends ButtonBase {
       alert("Must input a positive number");
       return;
     }
-    Transform.scale(canvas, scaleRatio, scaleRatio);
-    canvas.redrawStoredShapes();
+    Transform3D.scale(
+      canvas,
+      new Point3D(scaleRatio, scaleRatio, 1),
+      canvas.centerPoint
+    );
+    canvas.redrawPolygons();
   }
 
   clearSelect() {
