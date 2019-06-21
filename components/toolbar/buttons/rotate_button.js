@@ -26,7 +26,6 @@ class RotateBtn extends ButtonBase {
       return;
     }
     const angle = (degree * Math.PI) / 180;
-    canvas.calculateCenter();
     Transform3D.rotate(canvas, canvas.centerPoint, new Point3D(angle, 0, 0));
     canvas.redrawPolygons();
   }

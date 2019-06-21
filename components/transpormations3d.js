@@ -46,9 +46,6 @@ class Transform3D {
   }
 
   static rotate(canvas, centerPoint, angleVector) {
-    // save the first center because it can change while we change the points
-    const tempCenter = new Point3D(centerPoint.x, centerPoint.y, 0);
-
     // Calculate sin & cos for each angle in vector
     const cosX = Math.cos(angleVector.x);
     const sinX = Math.sin(angleVector.x);
@@ -79,7 +76,6 @@ class Transform3D {
       [0, 0, 0, 1]
     ];
 
-    // Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0));
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
       point.x = point.x - centerPoint.x;

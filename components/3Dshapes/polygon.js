@@ -86,6 +86,46 @@ class Polygon {
     return max;
   }
 
+  getMinX() {
+    let min = this.points[0].z;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].z < min) min = this.points[i].z;
+    }
+    return min;
+  }
+
+  getMaxX() {
+    let max = this.points[0].x;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].x > max) max = this.points[i].x;
+    }
+    return max;
+  }
+
+  getMinX() {
+    let min = this.points[0].x;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].x < min) min = this.points[i].x;
+    }
+    return min;
+  }
+
+  getMaxY() {
+    let max = this.points[0].y;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].y > max) max = this.points[i].y;
+    }
+    return max;
+  }
+
+  getMinY() {
+    let min = this.points[0].y;
+    for (let i = 1; i < this.points.length; ++i) {
+      if (this.points[i].y < min) min = this.points[i].y;
+    }
+    return min;
+  }
+
   drawPolygon(firstPoint, secondPoint, thirdPoint) {
     this.canvas.ctx.fillStyle = this.fillColor;
     this.canvas.ctx.beginPath();

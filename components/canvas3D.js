@@ -61,6 +61,7 @@ class Canvas3D {
     canvasFile.polygons.forEach(polygon => {
       this.colors.push(randomColor());
     });
+    this.updatePolygons();
 
     this.calculateCenter();
     this.redrawPolygons();
