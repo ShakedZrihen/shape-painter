@@ -12,7 +12,6 @@ paint.toolbar.addProjections(new PresBtn("presBtn", paint));
 
 // Transformation
 paint.toolbar.addButton(new ScaleBtn("scaleBtn", paint));
-paint.toolbar.addButton(new MoveBtn("moveBtn", paint));
 paint.toolbar.addButton(new RotateBtn("rotateBtn", paint, "x"));
 paint.toolbar.addButton(new RotateBtn("rotateYBtn", paint, "y"));
 paint.toolbar.addButton(new RotateBtn("rotateZBtn", paint, "z"));
