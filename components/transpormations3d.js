@@ -39,7 +39,8 @@ class Transform3D {
 
     Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0), false);
 
-    for (let i = 0; i < canvas.points.length; ++i) {
+    // Scale all points
+    canvas.points.forEach(point => {
       const point = canvas.points[i];
       const pointVector = [[point.x, point.y, point.z, 1]];
       const scaledPoints = multiplyMatrix(pointVector, scaleMatrix);
@@ -47,7 +48,7 @@ class Transform3D {
       point.x = scaledPoints[0][0];
       point.y = scaledPoints[0][1];
       point.z = scaledPoints[0][2];
-    }
+    });
 
     // Back to real position
     Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter, false);
