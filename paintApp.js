@@ -19,5 +19,4 @@ paint.toolbar.addButton(new RotateBtn("rotateZBtn", paint, "z"));
 // paint.toolbar.addButton(new FitBtn("fitBtn", paint));
 
 // Settings
-paint.toolbar.addButton(new ExportBtn("exportBtn", paint));
 paint.toolbar.addButton(new ImportBtn("importBtn", paint));

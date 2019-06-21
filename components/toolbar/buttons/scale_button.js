@@ -27,7 +27,7 @@ class ScaleBtn extends ButtonBase {
     }
     Transform3D.scale(
       canvas,
-      new Point3D(scaleRatio, scaleRatio, 1),
+      new Point3D(scaleRatio, scaleRatio, scaleRatio),
       canvas.centerPoint
     );
     canvas.redrawPolygons();

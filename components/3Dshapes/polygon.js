@@ -32,6 +32,8 @@ class Polygon {
     const obliquePoints = [];
     const sinAngle = Math.sin(angle);
     const cosAngle = Math.cos(angle);
+
+    // matrix
     const matrix = [
       [1, 0, 0, 0],
       [0, 1, 0, 0],
@@ -39,6 +41,7 @@ class Polygon {
       [0, 0, 0, 1]
     ];
 
+    // multiply each point with matrix
     this.points.forEach(point => {
       const vec = [[point.x, point.y, point.z, 1]];
       const res = multiplyMatrix(vec, matrix);

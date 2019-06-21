@@ -41,7 +41,6 @@ class Transform3D {
 
     // Scale all points
     canvas.points.forEach(point => {
-      const point = canvas.points[i];
       const pointVector = [[point.x, point.y, point.z, 1]];
       const scaledPoints = multiplyMatrix(pointVector, scaleMatrix);
 
