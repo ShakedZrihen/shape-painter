@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen & Avraham Lachmi
+ */
+
 class Polygon {
   constructor(
     canvas,

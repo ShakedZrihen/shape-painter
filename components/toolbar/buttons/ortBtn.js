@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen & Avraham Lachmi
+ */
+
 class OrtBtn extends ButtonBase {
   constructor(name, paint) {
     super(name, paint);

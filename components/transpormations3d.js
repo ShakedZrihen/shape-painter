@@ -1,3 +1,7 @@
+/*
+ *   Created by Ligal Levy & Shaked Zrihen & Avraham Lachmi
+ */
+
 class Transform3D {
   static move(canvas, firstPoint, secondPoint) {
     const aX = secondPoint.x - firstPoint.x;
