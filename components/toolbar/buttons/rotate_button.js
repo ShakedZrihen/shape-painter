@@ -3,8 +3,9 @@
  */
 
 class RotateBtn extends ButtonBase {
-  constructor(name, paint) {
+  constructor(name, paint, axis) {
     super(name, paint);
+    this.axis = axis;
   }
 
   handleButtonPress(event) {
@@ -26,7 +27,11 @@ class RotateBtn extends ButtonBase {
       return;
     }
     const angle = (degree * Math.PI) / 180;
-    Transform3D.rotate(canvas, canvas.centerPoint, new Point3D(angle, 0, 0));
+    let angleVector;
+    if (this.axis == "x") angleVector = new Point3D(angle, 0, 0);
+    if (this.axis == "y") angleVector = new Point3D(0, angle, 0);
+    if (this.axis == "z") angleVector = new Point3D(0, 0, angle);
+    Transform3D.rotate(canvas, canvas.centerPoint, angleVector);
     canvas.redrawPolygons();
   }
 

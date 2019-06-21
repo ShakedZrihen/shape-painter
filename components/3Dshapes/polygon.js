@@ -23,16 +23,31 @@ class Polygon {
     const normal = a.crossProduct(b);
     return normal;
   }
-
+  initOblique() {
+    const angle = (45 * Math.PI) / 180;
+    const obliquePoints = [];
+    const sinAngle = Math.sin(angle);
+    const cosAngle = Math.cos(angle);
+    const matrix = [
+      [1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0.5 * cosAngle, 0.5 * sinAngle, 1, 0],
+      [0, 0, 0, 1]
+    ];
+    this.points.forEach(point => {
+      const vec = [[point.x, point.y, point.z, 1]];
+      const res = multiplyMatrix(vec, matrix);
+      obliquePoints.push(new Point(res[0][0], res[0][1], res[0][2]));
+    });
+    return obliquePoints;
+  }
   initPrespective() {
-    const matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];
     const center = this.canvas.centerPoint;
     const prespectivePoints = [];
 
     this.points.forEach(point => {
       const s = 1 / (1 + point.z / center.z);
-      matrix[0][0] = s;
-      matrix[1][1] = s;
+      const matrix = [[s, 0, 0, 0], [0, s, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];
 
       const vec = [[point.x - center.x, point.y - center.y, point.z, 1]];
 
@@ -136,21 +151,30 @@ class Polygon {
     this.canvas.ctx.fill();
     this.canvas.ctx.strokeStyle = this.lineColor;
     this.canvas.ctx.stroke();
+    // this.canvas.ctx.fillRect(
+    //   this.canvas.centerPoint.x,
+    //   this.canvas.centerPoint.y,
+    //   10,
+    //   10
+    // );
   }
 
   draw(projection) {
     let projectionPoints;
-    if (projection === "prespective") {
+    if (projection === PRESPECTIVE) {
       projectionPoints = this.initPrespective();
+    }
+    if (projection === OBLIQUE) {
+      projectionPoints = this.initOblique();
     }
     this.visible = this.getVisibility(projectionPoints);
     if (!this.visible) {
       return;
     }
-    const firstPoint = this.points[0];
-    const secondPoint = this.points[1];
-    const thirdPoint = this.points[2];
-
-    this.drawPolygon(firstPoint, secondPoint, thirdPoint);
+    this.drawPolygon(
+      projectionPoints[0],
+      projectionPoints[1],
+      projectionPoints[2]
+    );
   }
 }

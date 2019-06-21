@@ -13,11 +13,11 @@ paint.toolbar.addButton(new BezierBtn("bezierBtn", paint));
 // Transformation
 paint.toolbar.addButton(new ScaleBtn("scaleBtn", paint));
 paint.toolbar.addButton(new MoveBtn("moveBtn", paint));
-paint.toolbar.addButton(new RotateBtn("rotateBtn", paint));
-paint.toolbar.addButton(new FlipXBtn("flipXBtn", paint));
-paint.toolbar.addButton(new FlipYBtn("flipYBtn", paint));
-paint.toolbar.addButton(new SnipBtn("snipBtn", paint));
-paint.toolbar.addButton(new FitBtn("fitBtn", paint));
+paint.toolbar.addButton(new RotateBtn("rotateBtn", paint, "x"));
+paint.toolbar.addButton(new RotateBtn("rotateYBtn", paint, "y"));
+paint.toolbar.addButton(new RotateBtn("rotateZBtn", paint, "z"));
+
+// paint.toolbar.addButton(new FitBtn("fitBtn", paint));
 
 // Settings
 paint.toolbar.addButton(new ExportBtn("exportBtn", paint));

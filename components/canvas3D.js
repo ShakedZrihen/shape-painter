@@ -12,7 +12,7 @@ class Canvas3D {
     this.centerPoint = null;
     this.polygons = [];
     this.file = null;
-    this.projection = "prespective";
+    this.projection = PRESPECTIVE;
     this.colors = [];
   }
 
@@ -65,6 +65,27 @@ class Canvas3D {
 
     this.calculateCenter();
     this.redrawPolygons();
+  }
+
+  calculateCenterTest() {
+    let maxX = -10000000;
+    let minX = 10000000;
+    let maxY = -10000000;
+    let minY = 10000000;
+    this.polygons.forEach(polygon => {
+      const polygonMaxX = polygon.getMaxX();
+      const polygonMaxY = polygon.getMaxY();
+      const polygonMinX = polygon.getMinX();
+      const polygonMinY = polygon.getMinY();
+      if (polygonMaxX > maxX) maxX = polygonMaxX;
+      if (polygonMaxY > maxY) maxY = polygonMaxY;
+      if (polygonMinX < minX) minX = polygonMinX;
+      if (polygonMinY < minY) minY = polygonMinY;
+    });
+    const xDiff = (maxX - minX) / 2;
+    const yDiff = (maxY - minY) / 2;
+    this.centerPoint = new Point3D(xDiff, yDiff, -1000);
+    console.log(this.centerPoint);
   }
 
   calculateCenter() {
