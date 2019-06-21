@@ -5,11 +5,23 @@
 class Toolbar {
   constructor() {
     this.buttons = [];
+    this.projections = [];
   }
 
   addButton(button) {
     button.init();
     this.buttons.push(button);
+  }
+
+  addProjections(button) {
+    button.init();
+    this.projections.push(button);
+  }
+
+  clearSelectedProjections() {
+    this.projections.forEach(button => {
+      button.clearSelect();
+    });
   }
 
   clearSelected() {

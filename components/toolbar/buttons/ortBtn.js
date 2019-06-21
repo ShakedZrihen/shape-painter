@@ -4,7 +4,7 @@ class OrtBtn extends ButtonBase {
   }
 
   handleButtonPress(event) {
-    this.paint.toolbar.clearSelected();
+    this.paint.toolbar.clearSelectedProjections();
     this.select();
     this.paint.canvas.clearListeners();
     this.paint.canvas.projection = ORTHOGRAPHIC;
