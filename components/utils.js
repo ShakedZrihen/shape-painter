@@ -1,5 +1,5 @@
 /*
- *   Created by Ligal Levy & Shaked Zrihen & Avraham Lachmi
+ *   Created by Ligal Levy & Shaked Zrihen & Avraham Lahmi
  */
 
 function calculateMaxAndMinPointsInArray(points) {
