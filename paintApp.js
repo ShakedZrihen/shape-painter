@@ -6,9 +6,9 @@ const paint = new Paint(new Toolbar());
 paint.init();
 
 // Shapes
-paint.toolbar.addButton(new LineBtn("lineBtn", paint));
-paint.toolbar.addButton(new CircleBtn("circleBtn", paint));
-paint.toolbar.addButton(new BezierBtn("bezierBtn", paint));
+paint.toolbar.addButton(new OrtBtn("ortBtn", paint));
+paint.toolbar.addButton(new OblBtn("oblBtn", paint));
+paint.toolbar.addButton(new PresBtn("presBtn", paint));
 
 // Transformation
 paint.toolbar.addButton(new ScaleBtn("scaleBtn", paint));

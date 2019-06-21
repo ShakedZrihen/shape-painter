@@ -34,11 +34,14 @@ class Polygon {
       [0.5 * cosAngle, 0.5 * sinAngle, 1, 0],
       [0, 0, 0, 1]
     ];
+
     this.points.forEach(point => {
       const vec = [[point.x, point.y, point.z, 1]];
       const res = multiplyMatrix(vec, matrix);
+
       obliquePoints.push(new Point(res[0][0], res[0][1], res[0][2]));
     });
+
     return obliquePoints;
   }
   initPrespective() {
@@ -50,13 +53,26 @@ class Polygon {
       const matrix = [[s, 0, 0, 0], [0, s, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];
 
       const vec = [[point.x - center.x, point.y - center.y, point.z, 1]];
-
       const res = multiplyMatrix(vec, matrix);
 
       prespectivePoints.push(
         new Point(res[0][0] + center.x, res[0][1] + center.y)
       );
     });
+
+    return prespectivePoints;
+  }
+
+  initOrthographic() {
+    const prespectivePoints = [];
+    const matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]];
+
+    this.points.forEach(point => {
+      const vec = [[point.x, point.y, 0, 1]];
+      const res = multiplyMatrix(vec, matrix);
+      prespectivePoints.push(new Point(res[0][0], res[0][1]));
+    });
+
     return prespectivePoints;
   }
 
@@ -151,12 +167,6 @@ class Polygon {
     this.canvas.ctx.fill();
     this.canvas.ctx.strokeStyle = this.lineColor;
     this.canvas.ctx.stroke();
-    // this.canvas.ctx.fillRect(
-    //   this.canvas.centerPoint.x,
-    //   this.canvas.centerPoint.y,
-    //   10,
-    //   10
-    // );
   }
 
   draw(projection) {
@@ -166,6 +176,9 @@ class Polygon {
     }
     if (projection === OBLIQUE) {
       projectionPoints = this.initOblique();
+    }
+    if (projection === ORTHOGRAPHIC) {
+      projectionPoints = this.initOrthographic();
     }
     this.visible = this.getVisibility(projectionPoints);
     if (!this.visible) {

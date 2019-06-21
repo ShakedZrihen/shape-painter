@@ -8,6 +8,7 @@ class PresBtn extends ButtonBase {
     this.select();
     this.paint.canvas.clearListeners();
     this.paint.canvas.projection = PRESPECTIVE;
+    this.paint.canvas.redrawPolygons();
   }
 
   clearSelect() {

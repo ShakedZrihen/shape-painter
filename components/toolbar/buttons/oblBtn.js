@@ -8,6 +8,7 @@ class OblBtn extends ButtonBase {
     this.select();
     this.paint.canvas.clearListeners();
     this.paint.canvas.projection = OBLIQUE;
+    this.paint.canvas.redrawPolygons();
   }
 
   clearSelect() {
