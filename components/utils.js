@@ -55,7 +55,6 @@ function multiplyMatrix(A, B) {
   }
 
   const newMatrix = createEmptyMatrix(ARowLength, BColumnLength);
-
   for (let i = 0; i < ARowLength; i++) {
     for (let j = 0; j < BColumnLength; j++) {
       let temp = 0;
@@ -66,4 +65,13 @@ function multiplyMatrix(A, B) {
     }
   }
   return newMatrix;
+}
+
+function randomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }

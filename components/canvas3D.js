@@ -13,23 +13,12 @@ class Canvas3D {
     this.polygons = [];
     this.file = null;
     this.projection = "prespective";
+    this.colors = [];
   }
 
-  importCanvas(canvasFile, fit = false) {
-    /**
-     * File Example:
-     * {
-     *    points: [{x: '', y: '', z: ''}],
-     *    polygons: [[point, point, point], [point, point, point, point],...]
-     * }
-     */
-    this.file = canvasFile;
-    this.points = [];
+  updatePolygons() {
     this.polygons = [];
-    canvasFile.points.forEach(point => {
-      this.points.push(new Point3D(point.x, point.y, point.z));
-    });
-    canvasFile.polygons.forEach(polygon => {
+    this.file.polygons.forEach((polygon, i) => {
       if (polygon.length < 3 || polygon.length > 4) {
         throw new Error("Polygon has 3 or 4 points");
       }
@@ -44,7 +33,9 @@ class Canvas3D {
       ];
       // console.log(JSON.stringify(polygonPoints, null, 2));
 
-      this.polygons.push(new Polygon(this, polygonPoints));
+      this.polygons.push(
+        new Polygon(this, polygonPoints, "#000000", this.colors[i])
+      );
       if (polygon.length > 3) {
         // Split to 2 polygons (0,1,2)^ AND (1,2,3)v
         const p4 = this.points[polygon[3]];
@@ -53,9 +44,24 @@ class Canvas3D {
           new Point3D(p3.x, p3.y, p3.z),
           new Point3D(p4.x, p4.y, p4.z)
         ];
-        this.polygons.push(new Polygon(this, polygonPoints));
+        this.polygons.push(
+          new Polygon(this, polygonPoints, "#000000", this.colors[i])
+        );
       }
     });
+  }
+
+  importCanvas(canvasFile, fit = false) {
+    this.file = canvasFile;
+    this.points = [];
+    canvasFile.points.forEach(point => {
+      this.points.push(new Point3D(point.x, point.y, point.z));
+    });
+
+    canvasFile.polygons.forEach(polygon => {
+      this.colors.push(randomColor());
+    });
+
     this.calculateCenter();
     this.redrawPolygons();
   }
@@ -88,34 +94,7 @@ class Canvas3D {
   }
 
   redrawPolygons() {
-    this.polygons = [];
-    this.file.polygons.forEach(polygon => {
-      if (polygon.length < 3 || polygon.length > 4) {
-        throw new Error("Polygon has 3 or 4 points");
-      }
-      const p1 = this.points[polygon[0]];
-      const p2 = this.points[polygon[1]];
-      const p3 = this.points[polygon[2]];
-
-      let polygonPoints = [
-        new Point3D(p1.x, p1.y, p1.z),
-        new Point3D(p2.x, p2.y, p2.z),
-        new Point3D(p3.x, p3.y, p3.z)
-      ];
-      // console.log(JSON.stringify(polygonPoints, null, 2));
-
-      this.polygons.push(new Polygon(this, polygonPoints));
-      if (polygon.length > 3) {
-        // Split to 2 polygons (0,1,2)^ AND (1,2,3)v
-        const p4 = this.points[polygon[3]];
-        polygonPoints = [
-          new Point3D(p1.x, p1.y, p1.z),
-          new Point3D(p3.x, p3.y, p3.z),
-          new Point3D(p4.x, p4.y, p4.z)
-        ];
-        this.polygons.push(new Polygon(this, polygonPoints));
-      }
-    });
+    this.updatePolygons();
     // Draw from min Z to max Z
 
     this.polygons.sort((a, b) =>

@@ -17,7 +17,7 @@ class Transform3D {
 
   static scale(canvas, transformVector, centerPoint) {
     // save the first center because it can change while we change the points
-    const tempCenter = centerPoint;
+    const tempCenter = new Point3D(centerPoint.x, centerPoint.y, centerPoint.z);
 
     // Scale matrix
     const scaleMatrix = [
@@ -43,15 +43,11 @@ class Transform3D {
 
     // Back to real position
     Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter, false);
-
-    if (updateCanvas) {
-      canvas.update();
-    }
   }
 
   static rotate(canvas, centerPoint, angleVector) {
     // save the first center because it can change while we change the points
-    const tempCenter = centerPoint;
+    const tempCenter = new Point3D(centerPoint.x, centerPoint.y, 0);
 
     // Calculate sin & cos for each angle in vector
     const cosX = Math.cos(angleVector.x);
@@ -83,24 +79,27 @@ class Transform3D {
       [0, 0, 0, 1]
     ];
 
-    Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0));
+    // Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0));
     for (let i = 0; i < canvas.points.length; ++i) {
       const point = canvas.points[i];
+      point.x = point.x - centerPoint.x;
+      point.y = point.y - centerPoint.y;
 
-      const pointVector = [
-        [point.x, point.y, point.z, 1] // adding 1 for allow the matrix multiply
-      ];
+      const clonedPoint = new Point3D(point.x, point.y, point.z);
+      const pointVector = [[clonedPoint.x, clonedPoint.y, clonedPoint.z, 1]];
 
-      const rotateX = multiplyMatrix(pointVector, rotateMatrixX);
-      const rotateY = multiplyMatrix(rotateX, rotateMatrixY);
-      const rotateZ = multiplyMatrix(rotateY, rotateMatrixZ);
+      const rotateX =
+        angleVector.x === 0
+          ? pointVector
+          : multiplyMatrix(pointVector, rotateMatrixX);
+      const rotateY =
+        angleVector.y === 0 ? rotateX : multiplyMatrix(rotateX, rotateMatrixY);
+      const rotateZ =
+        angleVector.z === 0 ? rotateY : multiplyMatrix(rotateY, rotateMatrixZ);
 
-      point.x = rotateX[0][0];
-      point.y = rotateY[0][1];
+      point.x = rotateZ[0][0] + centerPoint.x;
+      point.y = rotateZ[0][1] + centerPoint.y;
       point.z = rotateZ[0][2];
     }
-
-    // Back to real position
-    Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter);
   }
 }

@@ -78,15 +78,6 @@ class Polygon {
     return visibility;
   }
 
-  randomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
   getMaxZ() {
     let max = this.points[0].z;
     for (let i = 1; i < this.points.length; ++i) {
@@ -96,7 +87,7 @@ class Polygon {
   }
 
   drawPolygon(firstPoint, secondPoint, thirdPoint) {
-    this.canvas.ctx.fillStyle = this.fillColor || this.randomColor();
+    this.canvas.ctx.fillStyle = this.fillColor;
     this.canvas.ctx.beginPath();
     this.canvas.ctx.moveTo(firstPoint.x, firstPoint.y);
     this.canvas.ctx.lineTo(secondPoint.x, secondPoint.y);
