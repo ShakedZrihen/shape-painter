@@ -24,8 +24,7 @@ class Polygon {
   getNormal() {
     const a = this.points[0].subtract(this.points[1]);
     const b = this.points[0].subtract(this.points[2]);
-    const normal = a.crossProduct(b);
-    return normal;
+    return a.crossProduct(b);
   }
   initOblique() {
     const angle = (45 * Math.PI) / 180;
