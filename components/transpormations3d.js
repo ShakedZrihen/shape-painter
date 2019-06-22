@@ -22,18 +22,18 @@ class Transform3D {
   /**
    * resize object according to user's new scale ratio
    * @param {Canvas3D} canvas - the canvas where the object will drawing on
-   * @param {Point3D} transformVector - scale ratio on each axis
+   * @param {Point3D} scaleVector - scale ratio on each axis
    * @param {Point3D} centerPoint - center point
    */
-  static scale(canvas, transformVector, centerPoint) {
+  static scale(canvas, scaleVector, centerPoint) {
     // save the first center because it can change while we change the points
     const tempCenter = new Point3D(centerPoint.x, centerPoint.y, centerPoint.z);
 
     // Scale matrix
     const scaleMatrix = [
-      [transformVector.x, 0, 0, 0],
-      [0, transformVector.y, 0, 0],
-      [0, 0, transformVector.z, 0],
+      [scaleVector.x, 0, 0, 0],
+      [0, scaleVector.y, 0, 0],
+      [0, 0, scaleVector.z, 0],
       [0, 0, 0, 1]
     ];
 

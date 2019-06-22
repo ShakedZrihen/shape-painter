@@ -16,6 +16,22 @@ class Canvas3D {
     this.colors = [];
   }
 
+  importCanvas(canvasFile) {
+    this.file = canvasFile;
+    this.points = [];
+
+    canvasFile.points.forEach(point => {
+      this.points.push(new Point3D(point.x, point.y, point.z));
+    });
+    canvasFile.polygons.forEach(polygon => {
+      this.colors.push(randomColor());
+    });
+
+    this.updatePolygons();
+    this.calculateCenter();
+    this.redrawPolygons();
+  }
+
   updatePolygons() {
     this.polygons = [];
     this.file.polygons.forEach((polygon, i) => {
@@ -33,22 +49,6 @@ class Canvas3D {
       );
       this.polygons.push(newPolygon);
     });
-  }
-
-  importCanvas(canvasFile, fit = false) {
-    this.file = canvasFile;
-    this.points = [];
-    canvasFile.points.forEach(point => {
-      this.points.push(new Point3D(point.x, point.y, point.z));
-    });
-
-    canvasFile.polygons.forEach(polygon => {
-      this.colors.push(randomColor());
-    });
-    this.updatePolygons();
-
-    this.calculateCenter();
-    this.redrawPolygons();
   }
 
   calculateCenterTest() {
