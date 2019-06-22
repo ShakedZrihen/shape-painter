@@ -11,9 +11,6 @@ class Polygon {
     visible = true
   ) {
     this.canvas = canvas;
-    if (points.length !== 3) {
-      throw new Error("polygon has exactly 3 points");
-    }
     this.points = points;
     this.lineColor = lineColor;
     this.fillColor = fillColor;
@@ -163,12 +160,13 @@ class Polygon {
     return min;
   }
 
-  drawPolygon(firstPoint, secondPoint, thirdPoint) {
+  drawPolygon(points) {
     this.canvas.ctx.fillStyle = this.fillColor;
     this.canvas.ctx.beginPath();
-    this.canvas.ctx.moveTo(firstPoint.x, firstPoint.y);
-    this.canvas.ctx.lineTo(secondPoint.x, secondPoint.y);
-    this.canvas.ctx.lineTo(thirdPoint.x, thirdPoint.y);
+    this.canvas.ctx.moveTo(points[0].x, points[0].y);
+    for (let nextPoint = 1; nextPoint < points.length; ++nextPoint) {
+      this.canvas.ctx.lineTo(points[nextPoint].x, points[nextPoint].y);
+    }
     this.canvas.ctx.closePath();
     this.canvas.ctx.fill();
     this.canvas.ctx.strokeStyle = this.lineColor;
@@ -190,10 +188,6 @@ class Polygon {
     if (!this.visible) {
       return;
     }
-    this.drawPolygon(
-      projectionPoints[0],
-      projectionPoints[1],
-      projectionPoints[2]
-    );
+    this.drawPolygon(projectionPoints);
   }
 }

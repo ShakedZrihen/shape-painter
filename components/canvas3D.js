@@ -19,35 +19,19 @@ class Canvas3D {
   updatePolygons() {
     this.polygons = [];
     this.file.polygons.forEach((polygon, i) => {
-      if (polygon.length < 3 || polygon.length > 4) {
-        throw new Error("Polygon has 3 or 4 points");
-      }
-      const p1 = this.points[polygon[0]];
-      const p2 = this.points[polygon[1]];
-      const p3 = this.points[polygon[2]];
+      const polygonPoints = [];
+      polygon.forEach(point => {
+        const currPoint = this.points[point];
+        polygonPoints.push(new Point3D(currPoint.x, currPoint.y, currPoint.z));
+      });
 
-      let polygonPoints = [
-        new Point3D(p1.x, p1.y, p1.z),
-        new Point3D(p2.x, p2.y, p2.z),
-        new Point3D(p3.x, p3.y, p3.z)
-      ];
-      // console.log(JSON.stringify(polygonPoints, null, 2));
-
-      this.polygons.push(
-        new Polygon(this, polygonPoints, "#000000", this.colors[i])
+      const newPolygon = new Polygon(
+        this,
+        polygonPoints,
+        "#000000",
+        this.colors[i]
       );
-      if (polygon.length > 3) {
-        // Split to 2 polygons (0,1,2)^ AND (1,2,3)v
-        const p4 = this.points[polygon[3]];
-        polygonPoints = [
-          new Point3D(p1.x, p1.y, p1.z),
-          new Point3D(p3.x, p3.y, p3.z),
-          new Point3D(p4.x, p4.y, p4.z)
-        ];
-        this.polygons.push(
-          new Polygon(this, polygonPoints, "#000000", this.colors[i])
-        );
-      }
+      this.polygons.push(newPolygon);
     });
   }
 
@@ -85,7 +69,6 @@ class Canvas3D {
     const xDiff = (maxX - minX) / 2;
     const yDiff = (maxY - minY) / 2;
     this.centerPoint = new Point3D(xDiff, yDiff, -1000);
-    console.log(this.centerPoint);
   }
 
   calculateCenter() {
