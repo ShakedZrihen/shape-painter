@@ -51,7 +51,7 @@ function multiplyMatrix(A, B) {
   const BColumnLength = B[0].length;
 
   if (AColumnLength !== BRowLength) {
-    return null; // Matrix cannot by multiply
+    throw new Error("Matrix cannot be multiply");
   }
 
   const newMatrix = createEmptyMatrix(ARowLength, BColumnLength);
