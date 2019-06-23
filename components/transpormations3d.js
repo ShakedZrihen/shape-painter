@@ -3,22 +3,6 @@
  */
 
 class Transform3D {
-  static move(canvas, firstPoint, secondPoint) {
-    const aX = secondPoint.x - firstPoint.x;
-    const aY = secondPoint.y - firstPoint.y;
-    const aZ = secondPoint.z - firstPoint.z;
-    Transform3D.moveBy(canvas, aX, aY, aZ);
-  }
-
-  static moveBy(canvas, x, y, z) {
-    for (let i = 0; i < canvas.points.length; ++i) {
-      const point = canvas.points[i];
-      point.x = point.x + x;
-      point.y = point.y + y;
-      point.z = point.z + z;
-    }
-  }
-
   /**
    * resize object according to user's new scale ratio
    * @param {Canvas3D} canvas - the canvas where the object will drawing on
@@ -26,9 +10,6 @@ class Transform3D {
    * @param {Point3D} centerPoint - center point
    */
   static scale(canvas, scaleVector, centerPoint) {
-    // save the first center because it can change while we change the points
-    const tempCenter = new Point3D(centerPoint.x, centerPoint.y, centerPoint.z);
-
     // Scale matrix
     const scaleMatrix = [
       [scaleVector.x, 0, 0, 0],
@@ -37,20 +18,17 @@ class Transform3D {
       [0, 0, 0, 1]
     ];
 
-    Transform3D.move(canvas, centerPoint, new Point3D(0, 0, 0), false);
-
     // Scale all points
     canvas.points.forEach(point => {
-      const pointVector = [[point.x, point.y, point.z, 1]];
+      const pointVector = [
+        [point.x - centerPoint.x, point.y - centerPoint.y, point.z, 1]
+      ];
       const scaledPoints = multiplyMatrix(pointVector, scaleMatrix);
 
-      point.x = scaledPoints[0][0];
-      point.y = scaledPoints[0][1];
+      point.x = scaledPoints[0][0] + centerPoint.x;
+      point.y = scaledPoints[0][1] + centerPoint.y;
       point.z = scaledPoints[0][2];
     });
-
-    // Back to real position
-    Transform3D.move(canvas, new Point3D(0, 0, 0), tempCenter, false);
   }
 
   /**
@@ -92,12 +70,9 @@ class Transform3D {
 
     // Rotate each point
     canvas.points.forEach(point => {
-      point.x = point.x - centerPoint.x;
-      point.y = point.y - centerPoint.y;
-
-      // Clone the point for ensure we dont change the original point
-      const clonedPoint = new Point3D(point.x, point.y, point.z);
-      const pointVector = [[clonedPoint.x, clonedPoint.y, clonedPoint.z, 1]];
+      const pointVector = [
+        [point.x - centerPoint.x, point.y - centerPoint.y, point.z, 1]
+      ];
 
       // if all angles are 0 -> it will not rotate. else -> it will rotate according to axis
       const rotateX =
