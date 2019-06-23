@@ -23,6 +23,7 @@ class Canvas3D {
     canvasFile.points.forEach(point => {
       this.points.push(new Point3D(point.x, point.y, point.z));
     });
+    Transform3D.fit(this);
     canvasFile.polygons.forEach(polygon => {
       this.colors.push(randomColor());
     });

@@ -31,6 +31,27 @@ class Transform3D {
     });
   }
 
+  static fit(canvas) {
+    let maxMinPoints = calculateMaxAndMinPointsInArray(canvas.points);
+    console.log(maxMinPoints);
+    const fitPoints = [];
+    const centerDiff = {
+      x: Math.abs(canvas.canvas.width / 2 - maxMinPoints[MAX].x),
+      y: Math.abs(canvas.canvas.height / 2 - maxMinPoints[MAX].y)
+    };
+    canvas.points.forEach(point => {
+      fitPoints.push(
+        new Point3D(
+          Math.abs(point.x - maxMinPoints[MIN].x) + centerDiff.x,
+          Math.abs(point.y - maxMinPoints[MIN].y) + centerDiff.y,
+          point.z
+        )
+      );
+      console.log(fitPoints);
+    });
+    canvas.points = fitPoints;
+  }
+
   /**
    * Rotate objects according to user's angles
    * @param {Canvas3D} canvas
