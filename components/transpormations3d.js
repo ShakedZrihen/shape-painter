@@ -33,7 +33,6 @@ class Transform3D {
 
   static fit(canvas) {
     let maxMinPoints = calculateMaxAndMinPointsInArray(canvas.points);
-    console.log(maxMinPoints);
     const fitPoints = [];
     const centerDiff = {
       x: Math.abs(canvas.canvas.width / 2 - maxMinPoints[MAX].x),
@@ -47,7 +46,6 @@ class Transform3D {
           point.z
         )
       );
-      console.log(fitPoints);
     });
     canvas.points = fitPoints;
   }
