@@ -67,16 +67,16 @@ class Polygon {
   }
 
   initOrthographic() {
-    const prespectivePoints = [];
+    const orthographic = [];
     const matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]];
 
     this.points.forEach(point => {
       const vec = [[point.x, point.y, 0, 1]];
       const res = multiplyMatrix(vec, matrix);
-      prespectivePoints.push(new Point3D(res[0][0], res[0][1]));
+      orthographic.push(new Point3D(res[0][0], res[0][1]));
     });
 
-    return prespectivePoints;
+    return orthographic;
   }
 
   getVisibility(projectionPoints) {
