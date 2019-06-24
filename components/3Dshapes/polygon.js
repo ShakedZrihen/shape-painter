@@ -42,7 +42,7 @@ class Polygon {
       const vec = [[point.x, point.y, point.z, 1]];
       const res = multiplyMatrix(vec, matrix);
 
-      obliquePoints.push(new Point(res[0][0], res[0][1], res[0][2]));
+      obliquePoints.push(new Point3D(res[0][0], res[0][1], res[0][2]));
     });
 
     return obliquePoints;
@@ -59,7 +59,7 @@ class Polygon {
       const res = multiplyMatrix(vec, matrix);
 
       prespectivePoints.push(
-        new Point(res[0][0] + center.x, res[0][1] + center.y)
+        new Point3D(res[0][0] + center.x, res[0][1] + center.y)
       );
     });
 
@@ -73,7 +73,7 @@ class Polygon {
     this.points.forEach(point => {
       const vec = [[point.x, point.y, 0, 1]];
       const res = multiplyMatrix(vec, matrix);
-      prespectivePoints.push(new Point(res[0][0], res[0][1]));
+      prespectivePoints.push(new Point3D(res[0][0], res[0][1]));
     });
 
     return prespectivePoints;
