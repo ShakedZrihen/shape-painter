@@ -1,6 +1,6 @@
 
 
-#  Shape painter
+#  Shape painter :magic_wand:
 
 Web application for drawing circles, lines and curves
 
